@@ -1,0 +1,49 @@
+PODS:
+  - banefit_pay_flutter (0.0.1):
+    - BenefitPay-iOS (= 0.0.1)
+    - Flutter
+  - BenefitPay-iOS (0.0.1):
+    - Robin
+    - SharedDataModels-iOS
+    - SwiftyRSA
+  - Flutter (1.0.0)
+  - integration_test (0.0.1):
+    - Flutter
+  - Robin (0.98.0)
+  - SharedDataModels-iOS (0.0.12)
+  - SwiftyRSA (1.7.0):
+    - SwiftyRSA/ObjC (= 1.7.0)
+  - SwiftyRSA/ObjC (1.7.0)
+
+DEPENDENCIES:
+  - banefit_pay_flutter (from `.symlinks/plugins/banefit_pay_flutter/ios`)
+  - Flutter (from `Flutter`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+
+SPEC REPOS:
+  trunk:
+    - BenefitPay-iOS
+    - Robin
+    - SharedDataModels-iOS
+    - SwiftyRSA
+
+EXTERNAL SOURCES:
+  banefit_pay_flutter:
+    :path: ".symlinks/plugins/banefit_pay_flutter/ios"
+  Flutter:
+    :path: Flutter
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+
+SPEC CHECKSUMS:
+  banefit_pay_flutter: fc03e44fe4804908f6a99cd8da1c844143264642
+  BenefitPay-iOS: 5d35a76a274ee5f482ef8ba83d8fe3eb81bfd99d
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  integration_test: 13825b8a9334a850581300559b8839134b124670
+  Robin: a1819c64fdf79a468af2e01aaeabf895d2969fa3
+  SharedDataModels-iOS: 03d22b8a256a6ce698180b24d3ff8fefe42707b1
+  SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
+
+PODFILE CHECKSUM: a57f30d18f102dd3ce366b1d62a55ecbef2158e5
+
+COCOAPODS: 1.12.1
