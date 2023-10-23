@@ -14,7 +14,7 @@ class BanefitPayScreen extends StatefulWidget {
 }
 
 class _BanefitPayScreenState extends State<BanefitPayScreen> {
-  String result = "";
+  String sdkResponse = "";
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _BanefitPayScreenState extends State<BanefitPayScreen> {
         child: SingleChildScrollView(
           child: Center(
             child: Text(
-              result.isEmpty ? " " : "SDK RESPONSE : ${result ?? ""}",
+              sdkResponse.isEmpty ? " " : "SDK RESPONSE : ${sdkResponse ?? ""}",
             ),
           ),
         ),
@@ -46,32 +46,32 @@ class _BanefitPayScreenState extends State<BanefitPayScreen> {
           onCancel: () {
             debugPrint(">ON CANCEL >>>>");
             setState(() {
-              result = "Cancelled";
+              sdkResponse = "Cancelled";
             });
           },
           onSuccess: (String? value) {
             debugPrint(">ON SUCCESS >>>> $value");
             setState(() {
-              result = value ?? "";
+              sdkResponse = value ?? "";
             });
           },
           onError: (String? error) {
             debugPrint(">ON ERROR >>>> $error");
             setState(() {
-              result = error ?? "";
+              sdkResponse = error ?? "";
             });
           },
           onClick: () {},
           onOrderCreated: (String? value) {
             debugPrint(">ON ORDER CREATED >>>> $value");
             setState(() {
-              result = value ?? "";
+              sdkResponse = value ?? "";
             });
           },
           onChargeCreated: (String? value) {
             debugPrint(">ON CHARGE CREATED >>>> $value");
             setState(() {
-              result = value ?? "";
+              sdkResponse = value ?? "";
             });
           },
         ),
