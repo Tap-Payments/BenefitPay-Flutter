@@ -868,3 +868,53 @@ Below you will find more details about each parameter shared in the above tables
     }
 }
 ```
+
+
+# Generate the hash string[](https://developers.tap.company/docs/benefit-pay-ios#generate-the-hash-string)
+
+1. Add the dependency ``` crypto: Latest version```
+2. Import ```import 'package:convert/convert.dart'; ```
+3. Copy this helper method code
+```dart
+/**
+     This is a helper method showing how can you generate a hash string when performing live charges
+     - Parameter publicKey:             The Tap public key for you as a merchant pk_.....
+     - Parameter secretKey:             The Tap secret key for you as a merchant sk_.....
+     - Parameter amount:                The amount you are passing to the SDK, ot the amount you used in the order if you created the order before.
+     - Parameter currency:              The currency code you are passing to the SDK, ot the currency code you used in the order if you created the order before. PS: It is the capital case of the 3 iso country code ex: SAR, KWD.
+     - Parameter post:                  The post url you are passing to the SDK, ot the post url you pass within the Charge API. If you are not using postUrl please pass it as empty string
+     - Parameter transactionReference:  The reference.trasnsaction you are passing to the SDK(not all SDKs supports this,) or the reference.trasnsaction  you pass within the Charge API. If you are not using reference.trasnsaction please pass it as empty string
+     */
+    String generateTapHashString(  
+        String publicKey,  
+        String secretKey,  
+        double amount,  
+        String currency, {  
+        String postUrl = "",  
+        String transactionReference = "",  
+     }) {  
+       // Let us generate our encryption key  
+       var key = utf8.encode(secretKey);  
+       // For amounts, you will need to make sure they are formatted in a way to have     the correct number of decimal points. For BHD we need them to have 3 decimal points  
+       var formattedAmount = amount.toStringAsFixed(3);  
+       // Let us format the string that we will hash  
+       var toBeHashed = 'x_publickey$publicKey'  
+       'x_amount$formattedAmount'  
+       'x_currency$currency'  
+       'x_transaction$transactionReference'  
+       'x_post$postUrl';  
+       // let us generate the hash string now using the HMAC SHA256 algorithm  
+       var hmacSha256 = Hmac(sha256, key);  
+       var signature = hmacSha256.convert(utf8.encode(toBeHashed));  
+       var hashedString = signature.toString();  
+       return hashedString;  
+    }
+```
+4. Call it as follows:
+```dart
+String hashString = generateTapHashString(publicKey: publicKey, secretKey: secretString, amount: amount, currency: currency, postUrl: postUrl);
+```
+5. Pass it within the operator model
+```dart
+{ "operatorModel": {"publicKey": "pk_test_HJN863LmO15EtDgo9cqK7sjS", "hashString": hashString } }
+```
