@@ -13,8 +13,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String result = "";
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

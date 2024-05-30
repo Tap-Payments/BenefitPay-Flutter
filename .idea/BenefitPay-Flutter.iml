@@ -15,6 +15,9 @@
       <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/benefit_pay_flutter/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/benefit_pay_flutter/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/benefit_pay_flutter/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/benefit_pay_flutter/example/ios/.symlinks/plugins/benefit_pay_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/benefit_pay_flutter/example/ios/.symlinks/plugins/benefit_pay_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/example/ios/.symlinks/plugins/benefit_pay_flutter/example/ios/.symlinks/plugins/benefit_pay_flutter/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

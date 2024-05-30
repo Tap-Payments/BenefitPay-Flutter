@@ -165,22 +165,26 @@ class _TapBenefitPayWidgetState extends State<TapBenefitPayWidget> {
   Widget build(BuildContext context) {
     if (Theme.of(context).platform == TargetPlatform.android) {
       return SizedBox(
-        height: 48,
-        child: AndroidView(
-          viewType: "plugin/benefit_pay_view",
-          creationParams: widget.sdkConfiguration,
-          creationParamsCodec: const StandardMessageCodec(),
-          layoutDirection: TextDirection.ltr,
+        height: 60,
+        child: Center(
+          child: AndroidView(
+            viewType: "plugin/benefit_pay_view",
+            creationParams: widget.sdkConfiguration,
+            creationParamsCodec: const StandardMessageCodec(),
+            layoutDirection: TextDirection.ltr,
+          ),
         ),
       );
     } else {
       return SizedBox(
-        height: 48,
-        child: UiKitView(
-          viewType: "plugin/benefit_pay_view",
-          creationParams: widget.sdkConfiguration,
-          layoutDirection: TextDirection.ltr,
-          creationParamsCodec: const StandardMessageCodec(),
+        height: 60,
+        child: Center(
+          child: UiKitView(
+            viewType: "plugin/benefit_pay_view",
+            creationParams: widget.sdkConfiguration,
+            layoutDirection: TextDirection.ltr,
+            creationParamsCodec: const StandardMessageCodec(),
+          ),
         ),
       );
     }

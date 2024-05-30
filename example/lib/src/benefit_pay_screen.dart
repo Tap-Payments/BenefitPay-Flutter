@@ -39,7 +39,7 @@ class _BenefitPayScreenState extends State<BenefitPayScreen> {
         ),
       ),
       bottomSheet: Padding(
-        padding: const EdgeInsets.only(bottom: 40),
+        padding: const EdgeInsets.only(bottom: 20),
         child: TapBenefitPayWidget(
           sdkConfiguration: widget.dictionaryMap,
           onReady: () {
