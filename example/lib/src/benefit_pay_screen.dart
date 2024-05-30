@@ -1,19 +1,21 @@
-import 'package:banefit_pay_flutter/banefit_pay_flutter.dart';
+import 'dart:developer' as developer;
+
+import 'package:benefit_pay_flutter/benefit_pay_flutter.dart';
 import 'package:flutter/material.dart';
 
-class BanefitPayScreen extends StatefulWidget {
+class BenefitPayScreen extends StatefulWidget {
   final Map<String, dynamic> dictionaryMap;
 
-  const BanefitPayScreen({
+  const BenefitPayScreen({
     super.key,
     required this.dictionaryMap,
   });
 
   @override
-  State<BanefitPayScreen> createState() => _BanefitPayScreenState();
+  State<BenefitPayScreen> createState() => _BenefitPayScreenState();
 }
 
-class _BanefitPayScreenState extends State<BanefitPayScreen> {
+class _BenefitPayScreenState extends State<BenefitPayScreen> {
   String sdkResponse = "";
 
   @override
@@ -31,45 +33,45 @@ class _BanefitPayScreenState extends State<BanefitPayScreen> {
         child: SingleChildScrollView(
           child: Center(
             child: Text(
-              sdkResponse.isEmpty ? " " : "SDK RESPONSE : ${sdkResponse ?? ""}",
+              sdkResponse.isEmpty ? " " : "SDK RESPONSE : $sdkResponse",
             ),
           ),
         ),
       ),
       bottomSheet: Padding(
         padding: const EdgeInsets.only(bottom: 40),
-        child: TapBanefitPayWidget(
+        child: TapBenefitPayWidget(
           sdkConfiguration: widget.dictionaryMap,
           onReady: () {
-            debugPrint(">ON READY >>>>");
+            developer.log(">ON READY >>>>");
           },
           onCancel: () {
-            debugPrint(">ON CANCEL >>>>");
+            developer.log(">ON CANCEL >>>>");
             setState(() {
               sdkResponse = "Cancelled";
             });
           },
           onSuccess: (String? value) {
-            debugPrint(">ON SUCCESS >>>> $value");
+            developer.log(">ON SUCCESS >>>> $value");
             setState(() {
               sdkResponse = value ?? "";
             });
           },
           onError: (String? error) {
-            debugPrint(">ON ERROR >>>> $error");
+            developer.log(">ON ERROR >>>> $error");
             setState(() {
               sdkResponse = error ?? "";
             });
           },
           onClick: () {},
           onOrderCreated: (String? value) {
-            debugPrint(">ON ORDER CREATED >>>> $value");
+            developer.log(">ON ORDER CREATED >>>> $value");
             setState(() {
               sdkResponse = value ?? "";
             });
           },
           onChargeCreated: (String? value) {
-            debugPrint(">ON CHARGE CREATED >>>> $value");
+            developer.log(">ON CHARGE CREATED >>>> $value");
             setState(() {
               sdkResponse = value ?? "";
             });

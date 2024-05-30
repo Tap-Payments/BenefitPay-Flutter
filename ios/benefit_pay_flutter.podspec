@@ -1,9 +1,9 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint banefit_pay_flutter.podspec` to validate before publishing.
+# Run `pod lib lint benefit_pay_flutter.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'banefit_pay_flutter'
+  s.name             = 'benefit_pay_flutter'
   s.version          = '0.0.1'
   s.summary          = 'A new Flutter project.'
   s.description      = <<-DESC
@@ -15,7 +15,7 @@ A new Flutter project.
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'BenefitPay-iOS', '0.0.1'
+  s.dependency 'BenefitPay-iOS', '0.0.2'
   s.platform = :ios, '13.0'
 
   # Flutter.framework does not contain a i386 slice.

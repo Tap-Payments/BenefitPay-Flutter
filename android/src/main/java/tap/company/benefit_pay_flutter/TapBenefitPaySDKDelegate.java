@@ -1,4 +1,4 @@
-package tap.company.banefit_pay_flutter;
+package tap.company.benefit_pay_flutter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,15 +11,15 @@ import androidx.annotation.Nullable;
 
 import java.util.HashMap;
 
-import company.tap.tapcardformkit.open.DataConfiguration;
-import company.tap.tapcardformkit.open.TapBenefitPayStatusDelegate;
-import company.tap.tapcardformkit.open.web_wrapper.TapBenefitPay;
+import company.tap.tapbenefitpay.open.DataConfiguration;
+import company.tap.tapbenefitpay.open.TapBenefitPayStatusDelegate;
+import company.tap.tapbenefitpay.open.web_wrapper.TapBenefitPay;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.PluginRegistry;
 
-public class TapBanefitPaySDKDelegate implements PluginRegistry.ActivityResultListener,
+public class TapBenefitPaySDKDelegate implements PluginRegistry.ActivityResultListener,
         PluginRegistry.RequestPermissionsResultListener, TapBenefitPayStatusDelegate {
 
 
@@ -39,7 +39,7 @@ public class TapBanefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
     private Handler handler = new Handler(Looper.getMainLooper());
 
 
-    public TapBanefitPaySDKDelegate(Activity _activity) {
+    public TapBenefitPaySDKDelegate(Activity _activity) {
         this.activity = _activity;
         this.dataConfiguration = DataConfiguration.INSTANCE;
         this.tapBenefitPay = new TapBenefitPay(_activity.getApplicationContext());
@@ -58,8 +58,7 @@ public class TapBanefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
 
             System.out.println("Tap Card Configurations " + tapCardConfigurations);
 
-            DataConfiguration.INSTANCE.initializeSDK(activity1, tapCardConfigurations, tapBenefitPay);
-            DataConfiguration.INSTANCE.addTapBenefitPayStatusDelegate(this);
+            DataConfiguration.INSTANCE.initializeSDK(activity1, tapCardConfigurations, tapBenefitPay, this);
 
         } catch (Exception e) {
         }

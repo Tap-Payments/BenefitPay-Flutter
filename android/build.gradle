@@ -1,5 +1,5 @@
-group 'tap.company.banefit_pay_flutter'
-version '1.0'
+group = "tap.company.benefit_pay_flutter"
+version = "1.0"
 
 buildscript {
     repositories {
@@ -7,11 +7,10 @@ buildscript {
         mavenCentral()
         jcenter()
         maven { url 'https://jitpack.io' }
-
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath("com.android.tools.build:gradle:7.3.0")
     }
 }
 
@@ -21,31 +20,30 @@ rootProject.allprojects {
         mavenCentral()
         jcenter()
         maven { url 'https://jitpack.io' }
-
     }
 }
 
-apply plugin: 'com.android.library'
+apply plugin: "com.android.library"
 
 android {
     if (project.android.hasProperty("namespace")) {
-        namespace 'tap.company.banefit_pay_flutter'
+        namespace = "tap.company.benefit_pay_flutter"
     }
 
-    compileSdkVersion 33
+    compileSdk = 34
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     defaultConfig {
-        minSdkVersion 24
+        minSdk = 24
     }
 
     dependencies {
-        testImplementation 'junit:junit:4.13.2'
-        testImplementation 'org.mockito:mockito-core:5.0.0'
+        testImplementation("junit:junit:4.13.2")
+        testImplementation("org.mockito:mockito-core:5.0.0")
     }
 
     testOptions {
@@ -60,5 +58,5 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.Tap-Payments:BenefitPay-Android:0.0.3'
+    implementation 'com.github.Tap-Payments:BenefitPay-Android:0.0.10'
 }

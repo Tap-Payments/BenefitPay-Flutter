@@ -1,4 +1,4 @@
-package tap.company.banefit_pay_flutter;
+package tap.company.benefit_pay_flutter;
 
 import android.content.Context;
 
@@ -12,9 +12,9 @@ import io.flutter.plugin.platform.PlatformViewFactory;
 import io.flutter.plugin.common.StandardMessageCodec;
 
 
-public class TapBanefitViewFactory extends PlatformViewFactory {
+public class TapBenefitViewFactory extends PlatformViewFactory {
 
-    TapBanefitViewFactory() {
+    TapBenefitViewFactory() {
         super(StandardMessageCodec.INSTANCE);
     }
     @NonNull
@@ -22,6 +22,6 @@ public class TapBanefitViewFactory extends PlatformViewFactory {
     public PlatformView create(Context context, int viewId, @Nullable Object args) {
         final Map<String, Object> creationParams = (Map<String, Object>) args;
         System.out.println("Configuration from example app >>>>>>>>>>" + creationParams);
-        return new TapBanefitViewManager(context, viewId, creationParams);
+        return new TapBenefitViewManager(context, viewId, creationParams);
     }
 }

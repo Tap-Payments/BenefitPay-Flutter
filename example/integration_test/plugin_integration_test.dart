@@ -10,16 +10,16 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import 'package:banefit_pay_flutter/banefit_pay_flutter.dart';
+import 'package:benefit_pay_flutter/benefit_pay_flutter.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('getPlatformVersion test', (WidgetTester tester) async {
-//    final BanefitPayFlutter plugin = BanefitPayFlutter();
-  //  final String? version = await plugin.getPlatformVersion();
+   // final BenefitPayFlutter plugin = BenefitPayFlutter();
+   // final String? version = await plugin.getPlatformVersion();
     // The version string depends on the host platform running the test, so
     // just assert that some non-empty string is returned.
-   // expect(version?.isNotEmpty, true);
+  //  expect(version?.isNotEmpty, true);
   });
 }

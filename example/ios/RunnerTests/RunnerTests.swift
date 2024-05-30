@@ -2,7 +2,7 @@ import Flutter
 import UIKit
 import XCTest
 
-@testable import banefit_pay_flutter
+@testable import benefit_pay_flutter
 
 // This demonstrates a simple unit test of the Swift portion of this plugin's implementation.
 //
@@ -11,7 +11,7 @@ import XCTest
 class RunnerTests: XCTestCase {
 
   func testGetPlatformVersion() {
-    let plugin = BanefitPayFlutterPlugin()
+    let plugin = BenefitPayFlutterPlugin()
 
     let call = FlutterMethodCall(methodName: "getPlatformVersion", arguments: [])
 

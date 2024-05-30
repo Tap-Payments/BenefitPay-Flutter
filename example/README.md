@@ -1,6 +1,6 @@
-# banefit_pay_flutter_example
+# benefit_pay_flutter_example
 
-Demonstrates how to use the banefit_pay_flutter plugin.
+Demonstrates how to use the benefit_pay_flutter plugin.
 
 ## Getting Started
 

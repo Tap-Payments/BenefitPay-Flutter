@@ -1,11 +1,12 @@
 PODS:
-  - banefit_pay_flutter (0.0.1):
-    - BenefitPay-iOS (= 0.0.1)
+  - benefit_pay_flutter (0.0.1):
+    - BenefitPay-iOS (= 0.0.2)
     - Flutter
-  - BenefitPay-iOS (0.0.1):
+  - BenefitPay-iOS (0.0.2):
     - Robin
     - SharedDataModels-iOS
     - SwiftyRSA
+    - TapFontKit-iOS
   - Flutter (1.0.0)
   - integration_test (0.0.1):
     - Flutter
@@ -14,9 +15,18 @@ PODS:
   - SwiftyRSA (1.7.0):
     - SwiftyRSA/ObjC (= 1.7.0)
   - SwiftyRSA/ObjC (1.7.0)
+  - TapFontKit-iOS (0.0.10):
+    - TapSwiftFixesV2
+  - TapSwiftFixesV2 (1.0.3):
+    - TapSwiftFixesV2/CoreGraphics (= 1.0.3)
+    - TapSwiftFixesV2/Exceptions (= 1.0.3)
+    - TapSwiftFixesV2/Threading (= 1.0.3)
+  - TapSwiftFixesV2/CoreGraphics (1.0.3)
+  - TapSwiftFixesV2/Exceptions (1.0.3)
+  - TapSwiftFixesV2/Threading (1.0.3)
 
 DEPENDENCIES:
-  - banefit_pay_flutter (from `.symlinks/plugins/banefit_pay_flutter/ios`)
+  - benefit_pay_flutter (from `.symlinks/plugins/benefit_pay_flutter/ios`)
   - Flutter (from `Flutter`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
 
@@ -26,24 +36,28 @@ SPEC REPOS:
     - Robin
     - SharedDataModels-iOS
     - SwiftyRSA
+    - TapFontKit-iOS
+    - TapSwiftFixesV2
 
 EXTERNAL SOURCES:
-  banefit_pay_flutter:
-    :path: ".symlinks/plugins/banefit_pay_flutter/ios"
+  benefit_pay_flutter:
+    :path: ".symlinks/plugins/benefit_pay_flutter/ios"
   Flutter:
     :path: Flutter
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
 
 SPEC CHECKSUMS:
-  banefit_pay_flutter: fc03e44fe4804908f6a99cd8da1c844143264642
-  BenefitPay-iOS: 5d35a76a274ee5f482ef8ba83d8fe3eb81bfd99d
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  integration_test: 13825b8a9334a850581300559b8839134b124670
+  benefit_pay_flutter: be4ce15dc64b1e989b7f5007decd4820ac68e4d0
+  BenefitPay-iOS: 91baf50f3270a3d926697117f405c88f2bca7733
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  integration_test: ce0a3ffa1de96d1a89ca0ac26fca7ea18a749ef4
   Robin: a1819c64fdf79a468af2e01aaeabf895d2969fa3
   SharedDataModels-iOS: 03d22b8a256a6ce698180b24d3ff8fefe42707b1
   SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
+  TapFontKit-iOS: cd7376aec8f7edd97145cd0daa5ce584859429c1
+  TapSwiftFixesV2: ea726f752b6259d9e44624039fd6bad94b2a8633
 
 PODFILE CHECKSUM: a57f30d18f102dd3ce366b1d62a55ecbef2158e5
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.2

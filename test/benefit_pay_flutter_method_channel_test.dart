@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:banefit_pay_flutter/banefit_pay_flutter_method_channel.dart';
+import 'package:benefit_pay_flutter/benefit_pay_flutter_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelBanefitPayFlutter platform = MethodChannelBanefitPayFlutter();
-  const MethodChannel channel = MethodChannel('banefit_pay_flutter');
+  MethodChannelBenefitPayFlutter platform = MethodChannelBenefitPayFlutter();
+  const MethodChannel channel = MethodChannel('benefit_pay_flutter');
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(

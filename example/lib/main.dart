@@ -1,5 +1,5 @@
-import 'package:banefit_pay_flutter_example/src/config_settings_screen.dart';
 import 'package:flutter/material.dart';
+import 'src/src.dart';
 
 void main() {
   runApp(const MyApp());

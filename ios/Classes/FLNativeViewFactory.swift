@@ -5,14 +5,14 @@ import BenefitPay_iOS
 class FLNativeViewFactory: NSObject, FlutterPlatformViewFactory {
     private var messenger: FlutterBinaryMessenger
 
-    private var banefitPayDelegate: BenefitPayButtonDelegate
+    private var benefitPayDelegate: PayButtonDelegate
 
-    private var banefitPayButton: BenefitPayButton
+    private var benefitPayButton: PayButtonView
 
-    init(messenger: FlutterBinaryMessenger,banefitPayDelegate:BenefitPayButtonDelegate, banefitPayButton: BenefitPayButton) {
+    init(messenger: FlutterBinaryMessenger,benefitPayDelegate:PayButtonDelegate, benefitPayButton: PayButtonView) {
         self.messenger = messenger
-        self.banefitPayDelegate = banefitPayDelegate
-        self.banefitPayButton = banefitPayButton
+        self.benefitPayDelegate = benefitPayDelegate
+        self.benefitPayButton = benefitPayButton
         super.init()
     }
 
@@ -26,8 +26,8 @@ class FLNativeViewFactory: NSObject, FlutterPlatformViewFactory {
             viewIdentifier: viewId,
             arguments: args,
             binaryMessenger: messenger,
-            banefitPayDelegate: banefitPayDelegate,
-            banefitPayButton: banefitPayButton
+            benefitPayDelegate: benefitPayDelegate,
+            benefitPayButton: benefitPayButton
         )
     }
 
@@ -40,7 +40,7 @@ class FLNativeViewFactory: NSObject, FlutterPlatformViewFactory {
 class FLNativeView: NSObject, FlutterPlatformView {
     private var _view: UIView
     private var _args: [String:Any]?
-    private var banefitPayDelegate: BenefitPayButtonDelegate
+    private var benefitPayDelegate: PayButtonDelegate
 
 
     init(
@@ -48,15 +48,15 @@ class FLNativeView: NSObject, FlutterPlatformView {
         viewIdentifier viewId: Int64,
         arguments args: Any?,
         binaryMessenger messenger: FlutterBinaryMessenger?,
-        banefitPayDelegate: BenefitPayButtonDelegate,
-        banefitPayButton: BenefitPayButton
+        benefitPayDelegate: PayButtonDelegate,
+        benefitPayButton: PayButtonView
 
     ) {
-        self.banefitPayDelegate = banefitPayDelegate
+        self.benefitPayDelegate = benefitPayDelegate
         _view = UIView()
         self._args = args as? [String:Any]
         super.init()
-        createNativeView(view: _view, banefitPayButton: banefitPayButton)
+        createNativeView(view: _view, benefitPayButton: benefitPayButton)
     }
 
     func view() -> UIView {
@@ -65,21 +65,21 @@ class FLNativeView: NSObject, FlutterPlatformView {
 
    // var tapCardView = TapCardView.init()
 
-    func createNativeView(view _view: UIView,banefitPayButton: BenefitPayButton){
+    func createNativeView(view _view: UIView,benefitPayButton: PayButtonView){
         _view.backgroundColor = UIColor.clear
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)){
            // self.tapCardView = TapCardView(frame: .init(x: 0, y: 0, width: self._view.frame.width, height: self._view.frame.height))
-            self._view.addSubview(banefitPayButton)
-            self._view.bringSubviewToFront(banefitPayButton)
-            banefitPayButton.translatesAutoresizingMaskIntoConstraints = false
+            self._view.addSubview(benefitPayButton)
+            self._view.bringSubviewToFront(benefitPayButton)
+            benefitPayButton.translatesAutoresizingMaskIntoConstraints = false
                 // adjust the constraints MUST
                 NSLayoutConstraint.activate([
-                    banefitPayButton.leadingAnchor.constraint(equalTo: self._view.leadingAnchor, constant: 0),
-                    banefitPayButton.trailingAnchor.constraint(equalTo: self._view.trailingAnchor, constant: 0),
-                    banefitPayButton.centerYAnchor.constraint(equalTo: self._view.centerYAnchor)
+                    benefitPayButton.leadingAnchor.constraint(equalTo: self._view.leadingAnchor, constant: 0),
+                    benefitPayButton.trailingAnchor.constraint(equalTo: self._view.trailingAnchor, constant: 0),
+                    benefitPayButton.centerYAnchor.constraint(equalTo: self._view.centerYAnchor)
                 ])
-            banefitPayButton.initBenefitPayButton(configDict: self._args ??  [:],delegate: self.banefitPayDelegate)
-            print(banefitPayButton.frame)
+            benefitPayButton.initPayButton(configDict: self._args ??  [:],delegate: self.benefitPayDelegate,payButtonType: PayButtonTypeEnum.BenefitPay)
+
             }
     }
 }

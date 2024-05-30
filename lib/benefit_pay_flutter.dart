@@ -1,14 +1,20 @@
 import 'dart:convert';
+import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TapBanefitPayWidget extends StatefulWidget {
+class TapBenefitPayWidget extends StatefulWidget {
+  /// SDK Configuration is required
   final Map<String, dynamic> sdkConfiguration;
+
+  /// Some void callbacks
   final Function()? onReady, onClick, onCancel;
+
+  /// Some callbacks with a optional String return type
   final Function(String?)? onSuccess, onError, onOrderCreated, onChargeCreated;
 
-  const TapBanefitPayWidget({
+  const TapBenefitPayWidget({
     super.key,
     required this.sdkConfiguration,
     this.onReady,
@@ -21,10 +27,12 @@ class TapBanefitPayWidget extends StatefulWidget {
   });
 
   @override
-  State<TapBanefitPayWidget> createState() => _TapBanefitPayWidgetState();
+  State<TapBenefitPayWidget> createState() => _TapBenefitPayWidgetState();
 }
 
-class _TapBanefitPayWidgetState extends State<TapBanefitPayWidget> {
+class _TapBenefitPayWidgetState extends State<TapBenefitPayWidget> {
+  /// These Functions we are using to sending callbacks values to the example application or the users of this sdk
+  /// So with these we can send them back what we are receiving from the response
   late Function()? onReadyFunction;
   late Function()? onClickFunction;
   late Function()? onCancelFunction;
@@ -33,36 +41,42 @@ class _TapBanefitPayWidgetState extends State<TapBanefitPayWidget> {
   late Function(String?)? onChargeCreatedFunction;
   late Function(String?)? onOrderCreatedFunction;
 
-  static const MethodChannel _channel = MethodChannel('banefit_pay_flutter');
+  /// Method Channel
+  static const MethodChannel _channel = MethodChannel('benefit_pay_flutter');
 
-  static const EventChannel _eventChannel = EventChannel('banefit_pay_event');
+  /// Even Channel
+  static const EventChannel _eventChannel = EventChannel('benefit_pay_event');
 
+  /// Function to receive stream
   void streamTimeFromNative() {
     _eventChannel.receiveBroadcastStream().listen(_onEvent, onError: _onError);
   }
 
+  /// On event function to handle callbacks realtime
   void _onEvent(dynamic event) {
-    //Receive Event
-    var data = "Start Listing..";
-    if (event.toString() != null) {
-      data = event.toString();
-    }
     handleCallbacks(event);
   }
 
-  void _onError(dynamic event) {}
+  /// On error function in stream
+  void _onError(dynamic event) {
+    developer.log("ERROR >> $event");
+  }
 
+  /// Init state of the widget
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 0), () {
       streamTimeFromNative();
-      startTapCardSDK();
+      startBenefitPaySDK();
     });
     super.initState();
   }
 
-  Future<dynamic> startTapCardSDK() async {
+  //// Here we are starting the sdk using configuration from example or users app
+  Future<dynamic> startBenefitPaySDK() async {
     try {
+      developer
+          .log(">>> Configuration => ${jsonEncode(widget.sdkConfiguration)}");
       dynamic result = await _channel.invokeMethod(
         'start',
         {
@@ -70,14 +84,15 @@ class _TapBanefitPayWidgetState extends State<TapBanefitPayWidget> {
         },
       );
       handleCallbacks(result);
-      _startTapCardSDK2();
+      _startBenefitPaySDK2();
       // return responseData;
     } catch (ex) {
-      debugPrint("Start SDK Exception >>>>>> $ex");
+      developer.log("Start SDK Exception >>>>>> $ex");
     }
   }
 
-  Future<dynamic> _startTapCardSDK2() async {
+  /// This function we have created as private to handle real time multiple callbacks from native sdks
+  Future<dynamic> _startBenefitPaySDK2() async {
     try {
       dynamic result = await _channel.invokeMethod(
         'start2',
@@ -87,72 +102,72 @@ class _TapBanefitPayWidgetState extends State<TapBanefitPayWidget> {
       );
 
       handleCallbacks(result);
-      _startTapCardSDK2();
+      _startBenefitPaySDK2();
       //  return responseData;
     } catch (ex) {
-      debugPrint("Exception >>>>>> $ex");
+      developer.log("Exception >>>>>> $ex");
     }
   }
 
+  /// Handle Callbacks Function
+  /// Here we can handle each and every callback and send the result to the example or user app
   handleCallbacks(dynamic result) {
+    developer.log(">>>> RESULT >>>> $result}");
     if (result.containsKey("onReady")) {
-      debugPrint("On ready callback fired");
+      developer.log("On ready callback fired");
       onReadyFunction = widget.onReady;
       onReadyFunction!();
     }
 
     if (result.containsKey("onClick")) {
-      debugPrint("On Click callback fired");
+      developer.log("On Click callback fired");
       onReadyFunction = widget.onReady;
       onReadyFunction!();
     }
 
     if (result.containsKey("onSuccess")) {
-      /// onSuccess Callbacks Triggered From SDK
-      debugPrint("On Success callback fired");
+      developer.log("On Success callback fired");
       var resultOfSuccess = jsonDecode(result["onSuccess"]);
       onSuccessFunction = widget.onSuccess;
       onSuccessFunction!(resultOfSuccess.toString());
     }
 
     if (result.containsKey("onError")) {
-      debugPrint("On Error Callback Fired>>>>> ${result["onError"]} ");
+      developer.log("On Error Callback Fired>>>>> ${result["onError"]} ");
       var resultOfError = jsonDecode(result["onSuccess"]);
       onErrorFunction = widget.onError;
       onErrorFunction!(resultOfError.toString());
     }
 
     if (result.containsKey("onOrderCreated")) {
-      /// onValidInput Callbacks Triggered From SDK
-      debugPrint("On Error Callback Fired>>>>>");
+      developer.log("On Order Created Callback Fired>>>>>");
       var resultOfOnOrderCreated = jsonDecode(result["onOrderCreated"]);
       onOrderCreatedFunction = widget.onOrderCreated;
       onOrderCreatedFunction!(resultOfOnOrderCreated.toString());
     }
 
     if (result.containsKey("onCancel")) {
-      /// onValidInput Callbacks Triggered From SDK
-      debugPrint("On Cancel Callback Fired>>>>>");
-    //  var resultOfOnOrderCreated = jsonDecode(result["onCancel"]);
+      developer.log("On Cancel Callback Fired>>>>>");
       onCancelFunction = widget.onCancel;
       onCancelFunction!();
     }
 
     if (result.containsKey("onChargeCreated")) {
-      /// onValidInput Callbacks Triggered From SDK
+      developer.log("On Charge Created Callback Fired>>>>>");
       var resultOfOnChargeCreated = jsonDecode(result["onChargeCreated"]);
       onChargeCreatedFunction = widget.onChargeCreated;
       onChargeCreatedFunction!(resultOfOnChargeCreated.toString());
     }
   }
 
+  /// Widget to display Native View
   @override
   Widget build(BuildContext context) {
     if (Theme.of(context).platform == TargetPlatform.android) {
       return SizedBox(
         height: 48,
         child: AndroidView(
-          viewType: "plugin/banefit_pay_view",
+          viewType: "plugin/benefit_pay_view",
           creationParams: widget.sdkConfiguration,
           creationParamsCodec: const StandardMessageCodec(),
           layoutDirection: TextDirection.ltr,
@@ -162,7 +177,7 @@ class _TapBanefitPayWidgetState extends State<TapBanefitPayWidget> {
       return SizedBox(
         height: 48,
         child: UiKitView(
-          viewType: "plugin/banefit_pay_view",
+          viewType: "plugin/benefit_pay_view",
           creationParams: widget.sdkConfiguration,
           layoutDirection: TextDirection.ltr,
           creationParamsCodec: const StandardMessageCodec(),

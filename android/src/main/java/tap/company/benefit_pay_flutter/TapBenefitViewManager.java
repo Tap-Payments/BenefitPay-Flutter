@@ -1,4 +1,4 @@
-package tap.company.banefit_pay_flutter;
+package tap.company.benefit_pay_flutter;
 
 import android.content.Context;
 import android.view.View;
@@ -11,20 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
-import company.tap.tapcardformkit.open.web_wrapper.TapBenefitPay;
+import company.tap.tapbenefitpay.open.web_wrapper.TapBenefitPay;
 import io.flutter.plugin.platform.PlatformView;
 
 import java.util.Map;
 
-public class TapBanefitViewManager implements PlatformView {
+public class TapBenefitViewManager implements PlatformView {
 
 
     private TapBenefitPay tapCardKit;
     private View view;
 
 
-    TapBanefitViewManager(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams) {
-        view = LayoutInflater.from(context).inflate(R.layout.tap_banefit_pay_view, null);
+    TapBenefitViewManager(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams) {
+        view = LayoutInflater.from(context).inflate(R.layout.tap_benefit_pay_view, null);
         tapCardKit = view.findViewById(R.id.benfit_pay);
     }
 
