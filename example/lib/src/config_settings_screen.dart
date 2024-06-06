@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:benefit_pay_flutter_example/src/src.dart';
+import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +16,8 @@ class _ConfigSettingsScreenState extends State<ConfigSettingsScreen> {
   /// Text Form Fields
   /// Variable Declaration
   TextEditingController publicKeyController = TextEditingController(
-    text: "pk_test_Wa4ju8UC1zoi0HhST9yO3M6n",
+    text:
+        "pk_live_Q4EYIh0BJe17uDwtGV2CsT8X", // "pk_test_Wa4ju8UC1zoi0HhST9yO3M6n",
   );
   TextEditingController hashStringKeyController = TextEditingController(
     text: "",
@@ -103,6 +107,31 @@ class _ConfigSettingsScreenState extends State<ConfigSettingsScreen> {
         ).toList(),
       ),
     );
+  }
+
+  String generateTapHashString(
+    String publicKey,
+    String secretKey,
+    double amount,
+    String currency, {
+    String postUrl = "",
+    String transactionReference = "",
+  }) {
+    // Let us generate our encryption key
+    var key = utf8.encode(secretKey);
+    // For amounts, you will need to make sure they are formatted in a way to have     the correct number of decimal points. For BHD we need them to have 3 decimal points
+    var formattedAmount = amount.toStringAsFixed(2);
+    // Let us format the string that we will hash
+    var toBeHashed = 'x_publickey$publicKey'
+        'x_amount$formattedAmount'
+        'x_currency$currency'
+        'x_transaction$transactionReference'
+        'x_post$postUrl';
+    // let us generate the hash string now using the HMAC SHA256 algorithm
+    var hmacSha256 = Hmac(sha256, key);
+    var signature = hmacSha256.convert(utf8.encode(toBeHashed));
+    var hashedString = signature.toString();
+    return hashedString;
   }
 
   @override

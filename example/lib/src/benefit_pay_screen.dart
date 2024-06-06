@@ -63,7 +63,9 @@ class _BenefitPayScreenState extends State<BenefitPayScreen> {
               sdkResponse = error ?? "";
             });
           },
-          onClick: () {},
+          onClick: () {
+
+          },
           onOrderCreated: (String? value) {
             developer.log(">ON ORDER CREATED >>>> $value");
             setState(() {
