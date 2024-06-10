@@ -32,7 +32,7 @@ class _BenefitPayScreenState extends State<BenefitPayScreen> {
         ),
         child: SingleChildScrollView(
           child: Center(
-            child: Text(
+            child: SelectableText(
               sdkResponse.isEmpty ? " " : "SDK RESPONSE : $sdkResponse",
             ),
           ),
