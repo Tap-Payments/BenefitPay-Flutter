@@ -16,8 +16,7 @@ class _ConfigSettingsScreenState extends State<ConfigSettingsScreen> {
   /// Text Form Fields
   /// Variable Declaration
   TextEditingController publicKeyController = TextEditingController(
-    text:
-        "pk_live_Q4EYIh0BJe17uDwtGV2CsT8X", // "pk_test_Wa4ju8UC1zoi0HhST9yO3M6n",
+    text: "pk_test_Wa4ju8UC1zoi0HhST9yO3M6n",
   );
 
   /// Transaction Text Controllers

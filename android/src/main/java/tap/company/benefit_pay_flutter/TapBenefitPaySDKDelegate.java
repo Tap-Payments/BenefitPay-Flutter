@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import java.util.HashMap;
 
-import company.tap.tapbenefitpay.open.DataConfiguration;
+import company.tap.tapbenefitpay.open.BenefitPayDataConfiguration;
 import company.tap.tapbenefitpay.open.TapBenefitPayStatusDelegate;
 import company.tap.tapbenefitpay.open.web_wrapper.TapBenefitPay;
 import io.flutter.plugin.common.EventChannel;
@@ -24,7 +24,7 @@ public class TapBenefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
 
 
     private Activity activity;
-    private DataConfiguration dataConfiguration;
+    private BenefitPayDataConfiguration dataConfiguration;
     private TapBenefitPay tapBenefitPay;
 
     public EventChannel.EventSink eventSink;
@@ -41,7 +41,7 @@ public class TapBenefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
 
     public TapBenefitPaySDKDelegate(Activity _activity) {
         this.activity = _activity;
-        this.dataConfiguration = DataConfiguration.INSTANCE;
+        this.dataConfiguration = BenefitPayDataConfiguration.INSTANCE;
         this.tapBenefitPay = new TapBenefitPay(_activity.getApplicationContext());
 
     }
@@ -58,7 +58,7 @@ public class TapBenefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
 
             System.out.println("Tap Card Configurations " + tapCardConfigurations);
 
-            DataConfiguration.INSTANCE.initializeSDK(activity1, tapCardConfigurations, tapBenefitPay, this);
+            BenefitPayDataConfiguration.INSTANCE.initializeSDK(activity1, tapCardConfigurations, tapBenefitPay, this);
 
         } catch (Exception e) {
         }
@@ -76,7 +76,7 @@ public class TapBenefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
     }
 
     @Override
-    public void onChargeCreated(@NonNull String s) {
+    public void onBenefitPayChargeCreated(@NonNull String s) {
         handler.post(
                 new Runnable() {
                     @Override
@@ -103,7 +103,7 @@ public class TapBenefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
     }
 
     @Override
-    public void onClick() {
+    public void onBenefitPayClick() {
         handler.post(
                 new Runnable() {
                     @Override
@@ -116,7 +116,7 @@ public class TapBenefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
     }
 
     @Override
-    public void onError(@NonNull String s) {
+    public void onBenefitPayError(@NonNull String s) {
         handler.post(
                 new Runnable() {
                     @Override
@@ -129,7 +129,7 @@ public class TapBenefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
     }
 
     @Override
-    public void onOrderCreated(@NonNull String s) {
+    public void onBenefitPayOrderCreated(@NonNull String s) {
         handler.post(
                 new Runnable() {
                     @Override
@@ -156,7 +156,7 @@ public class TapBenefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
     }
 
     @Override
-    public void onReady() {
+    public void onBenefitPayReady() {
         handler.post(
                 new Runnable() {
                     @Override
@@ -169,7 +169,7 @@ public class TapBenefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
     }
 
     @Override
-    public void onSuccess(@NonNull String s) {
+    public void onBenefitPaySuccess(@NonNull String s) {
         handler.post(
                 new Runnable() {
                     @Override
@@ -196,7 +196,7 @@ public class TapBenefitPaySDKDelegate implements PluginRegistry.ActivityResultLi
     }
 
     @Override
-    public void onCancel() {
+    public void onBenefitPayCancel() {
         handler.post(
                 new Runnable() {
                     @Override
