@@ -58,5 +58,5 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.Tap-Payments:BenefitPay-Android:0.0.18'
+    implementation 'com.github.Tap-Payments:BenefitPay-Android:0.0.19'
 }
