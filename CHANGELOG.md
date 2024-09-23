@@ -1,3 +1,8 @@
+## 0.0.5 23-Sep-2024
+
+* Android sdk version updated with latest 0.0.20
+* Hot fix for ssl issues
+
 ## 0.0.4 27-Aug-2024
 
 * Android sdk version updated with latest 0.0.19

@@ -34,7 +34,7 @@ In the  `pubspec.yaml` of your flutter project, add the following dependency:
 
 dependencies:
 
-```benefit_pay_flutter: ^0.0.4```
+```benefit_pay_flutter: ^0.0.5```
 
 
 # Step 4: Integrating BenefitPay-Flutter[](https://developers.tap.company/docs/benefit_pay_flutter#step-4--integrating-benefit-pay-flutter)
