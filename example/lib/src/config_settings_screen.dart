@@ -16,8 +16,10 @@ class _ConfigSettingsScreenState extends State<ConfigSettingsScreen> {
   /// Text Form Fields
   /// Variable Declaration
   TextEditingController publicKeyController = TextEditingController(
-    text: "pk_test_Wa4ju8UC1zoi0HhST9yO3M6n",
+    text: "pk_live_*****",
   );
+
+  TextEditingController hashStringController = TextEditingController(text: "");
 
   /// Transaction Text Controllers
   TextEditingController transactionAmountController =
@@ -29,6 +31,11 @@ class _ConfigSettingsScreenState extends State<ConfigSettingsScreen> {
   /// Post URL Controller
   TextEditingController postURLController = TextEditingController(
     text: "",
+  );
+
+  /// Post URL Controller
+  TextEditingController scopeController = TextEditingController(
+    text: "charge",
   );
 
   /// Merchant ID Controller
@@ -161,7 +168,7 @@ class _ConfigSettingsScreenState extends State<ConfigSettingsScreen> {
             const CustomDividerWidget(),
             CustomInputFieldWidget(
               fieldName: 'Hash String',
-              controller: TextEditingController(text: hashedString),
+              controller: TextEditingController(text: ""),
             ),
             gapH16,
             const LabelTextWidget(label: "Transaction"),
@@ -182,6 +189,16 @@ class _ConfigSettingsScreenState extends State<ConfigSettingsScreen> {
               fieldName: 'merchant id',
               controller: merchantIdController,
               hintText: "Enter your merchant id",
+            ),
+            gapH16,
+            const LabelTextWidget(
+              label: 'Scope',
+            ),
+            gapH4,
+            CustomInputFieldWidget(
+              fieldName: 'Scope',
+              controller: scopeController,
+              hintText: 'Scope',
             ),
             gapH16,
             const LabelTextWidget(label: "Post URL"),
@@ -234,44 +251,49 @@ class _ConfigSettingsScreenState extends State<ConfigSettingsScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => BenefitPayScreen(
-                        dictionaryMap: {
-                          "post": const {"url": ""},
-                          "operator": {
-                            "publicKey": publicKeyController.text,
-                            "hashString": ""
+                      builder: (context) {
+                        Map<String, dynamic> data = {
+                          "merchant": {
+                            "id": merchantIdController.text,
                           },
+                          "scope": scopeController.text,
+                          "redirect": "",
+                          "customer": {
+                            "names": [
+                              {
+                                "middle": "Middle",
+                                "last": "Payments",
+                                "lang": "en",
+                                "first": "Tap"
+                              }
+                            ],
+                            "contact": {
+                              "phone": {
+                                "number": "66178990",
+                                "countryCode": "965"
+                              },
+                              "email": "email@email.com"
+                            },
+                            "id": customerIdController.text,
+                          },
+                          "locale": selectedLocaleValue,
+                          "edges": selectedEdgesValue,
+                          "reference": {"transaction": "tre", "order": "12"},
+                          "metadata": "",
+                          "post": {"url": postURLController.text},
                           "transaction": {
                             "amount": transactionAmountController.text,
                             "currency": transactionCurrencyController.text,
                           },
-                          "merchant": {
-                            "id": merchantIdController.text,
+                          "operator": {
+                            "hashString": hashStringController.text,
+                            "publicKey": publicKeyController.text,
                           },
-                          "customer": {
-                            "id": customerIdController.text,
-                            "names": const [
-                              {
-                                "first": "TAP",
-                                "middle": "",
-                                "last": "PAYMENTS",
-                                "lang": "en",
-                              }
-                            ],
-                            "contact": const {
-                              "email": "tap@tap.company",
-                              "phone": {
-                                "countryCode": "+965",
-                                "number": "88888888"
-                              }
-                            },
-                          },
-                          "interface": {
-                            "locale": selectedLocaleValue,
-                            "edges": selectedEdgesValue,
-                          },
-                        },
-                      ),
+                        };
+                        return BenefitPayScreen(
+                          dictionaryMap: data,
+                        );
+                      },
                     ),
                   );
                 },

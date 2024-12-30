@@ -1,4 +1,4 @@
-package tap.company.benefit_pay_flutter_example;
+package tap.BenefitPayExampleApp;
 
 import io.flutter.embedding.android.FlutterActivity;
 

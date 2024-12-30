@@ -1,3 +1,9 @@
+
+## 1.0.0 30-Dec-2024
+
+* Android sdk version updated with latest 1.0.0
+* iOS sdk version updated with latest 1.0.0
+
 ## 0.0.5 23-Sep-2024
 
 * Android sdk version updated with latest 0.0.20

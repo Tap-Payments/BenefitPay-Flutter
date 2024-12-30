@@ -77,10 +77,12 @@ class _TapBenefitPayWidgetState extends State<TapBenefitPayWidget> {
     try {
       developer
           .log(">>> Configuration => ${jsonEncode(widget.sdkConfiguration)}");
+      Map<String, dynamic> configurations = widget.sdkConfiguration;
+      configurations["paymentMethod"] = "benefitpay";
       dynamic result = await _channel.invokeMethod(
         'start',
         {
-          "configuration": widget.sdkConfiguration,
+          "configuration": configurations,
         },
       );
       handleCallbacks(result);
@@ -134,7 +136,7 @@ class _TapBenefitPayWidgetState extends State<TapBenefitPayWidget> {
 
     if (result.containsKey("onError")) {
       developer.log("On Error Callback Fired>>>>> ${result["onError"]} ");
-      var resultOfError = jsonDecode(result["onSuccess"]);
+      var resultOfError = jsonDecode(result["onError"]);
       onErrorFunction = widget.onError;
       onErrorFunction!(resultOfError.toString());
     }
