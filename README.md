@@ -67,42 +67,44 @@ While creating the widget as previously mentioned, it is time to pass the parame
 
 1. Pass these parameters to the TapBenefitPayWidget widget
 ```dart // We provide the button view the needed parameters. TapBenefitPayWidget(      
- sdkConfiguration: const {      
-    "post": const {"url": ""},      
-    "operator": {      
-       "publicKey": "pk_test_HJN863LmO15EtDgo9cqK7sjS",      
-       "hashString": ""      
-    },      
-    "transaction": {      
-       "amount": 1.0,      
-       "currency": "BHD",      
-     },  
- "reference" : const { "transaction" : "transaction", "order" : "order" },    "merchant": {      
-       "id": "",      
-     },      
-     "customer": {      
-       "id": "",      
-      "names": const [      
-       {      
-        "first": "TAP",      
-        "middle": "",      
-        "last": "PAYMENTS",      
-        "lang": "en",      
-      }      
-      ],      
-      "contact": const {      
-      "email": "tap@tap.company",      
-      "phone": {      
-      "countryCode": "+965",      
-        "number": "88888888"      
-      }      
-    },      
-  },      
-    "interface": {      
-    "locale": "en",      
-"edges": "flat",
-  },
-},   
+ sdkConfiguration: const {
+                          "merchant": {
+                            "id": "",
+                          },
+                          "scope": "charge",
+                          "redirect": "",
+                          "customer": {
+                            "names": [
+                              {
+                                "middle": "Middle",
+                                "last": "Payments",
+                                "lang": "en",
+                                "first": "Tap"
+                              }
+                            ],
+                            "contact": {
+                              "phone": {
+                                "number": "66178990",
+                                "countryCode": "965"
+                              },
+                              "email": "email@email.com"
+                            },
+                            "id":"",
+                          },
+                          "locale": "en",
+                          "edges": "curved",
+                          "reference": {"transaction": "transaction", "order": "12"},
+                          "metadata": "",
+                          "post": {"url": ""},
+                          "transaction": {
+                            "amount": "10",
+                            "currency": "BHD",
+                          },
+                          "operator": {
+                            "hashString": "",
+                            "publicKey": 'pk_live_********',
+                          },
+                        },   
 ``` 
 **Full code snippet for creating the parameters + passing it TapBenefitPayWidget variable + Listening to callbacks**
 ```dart import 'dart:developer' as developer;      
@@ -213,8 +215,7 @@ Below you will find more details about each parameter shared in the above tables
      Note: Minimum amount to be added is 0.1.
 4. _Example:_
  ```dart      
- "transaction": {      
-"amount": 1.0, "currency": "BHD", }   
+ "transaction": { "amount": 1.0, "currency": "BHD", }   
 ```   
 
 ## customer [](https://developers.tap.company/docs/benefit_pay_flutter#customer)
@@ -293,9 +294,7 @@ Below you will find more details about each parameter shared in the above tables
 
 4. _Example:_
 ```dart {    
- "interface":  {  "locale": "en",      
-  "edges": "flat",      
-}   
+ "interface":  {  "locale": "en", "edges": "straight", }   
 ```   
 ## post [](https://developers.tap.company/docs/benefit_pay_flutter#post)
 
