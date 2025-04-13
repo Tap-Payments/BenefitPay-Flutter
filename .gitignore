@@ -4,3 +4,7 @@ android/.idea/
 .dart_tool/
 
 example/.fvm/
+
+example/android/app/.cxx/
+
+.DS_Store

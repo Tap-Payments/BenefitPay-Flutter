@@ -9,7 +9,6 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 
-
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
@@ -156,22 +155,6 @@ public class BenefitPayFlutterPlugin implements MethodChannel.MethodCallHandler,
      * @param registrar
      */
 
-    public static void registerWith(PluginRegistry.Registrar registrar) {
-        if (registrar.activity() == null) {
-            // If a background flutter view tries to register the plugin, there will be no activity from the registrar,
-            // we stop the registering process immediately because the SDK requires an activity.
-            return;
-        }
-        Activity activity = registrar.activity();
-        Application application = null;
-        if (registrar.context() != null) {
-            application = (Application) (registrar.context().getApplicationContext());
-        }
-        BenefitPayFlutterPlugin plugin = new BenefitPayFlutterPlugin();
-        plugin.setup(registrar.messenger(), application, activity, registrar, null);
-    }
-
-
     /**
      * Default constructor for the plugin.
      *
@@ -187,9 +170,9 @@ public class BenefitPayFlutterPlugin implements MethodChannel.MethodCallHandler,
     @Override
     public void onAttachedToEngine(FlutterPluginBinding binding) {
         pluginBinding = binding;
-        System.out.println("View Type ID >>>>>>>");
         pluginBinding.getPlatformViewRegistry()
                 .registerViewFactory("plugin/benefit_pay_view", new TapBenefitViewFactory());
+        System.out.println("View Type ID >>>>>>>");
     }
 
     @Override
@@ -199,13 +182,12 @@ public class BenefitPayFlutterPlugin implements MethodChannel.MethodCallHandler,
 
     @Override
     public void onAttachedToActivity(ActivityPluginBinding binding) {
-        activityBinding = binding;
-        setup(
-                pluginBinding.getBinaryMessenger(),
-                (Application) pluginBinding.getApplicationContext(),
-                activityBinding.getActivity(),
-                null,
-                activityBinding);
+    this.activityBinding = binding;
+    setup(
+            pluginBinding.getBinaryMessenger(),
+            (Application) pluginBinding.getApplicationContext(),
+            binding.getActivity(), 
+            binding);
     }
 
     @Override
@@ -228,34 +210,25 @@ public class BenefitPayFlutterPlugin implements MethodChannel.MethodCallHandler,
      * setup
      */
 
-    private void setup(
-            final BinaryMessenger messenger,
-            final Application application,
-            final Activity activity,
-            final PluginRegistry.Registrar registrar,
-            final ActivityPluginBinding activityBinding) {
-        this.activity = activity;
-        this.application = application;
-        this.delegate = constructDelegate(activity);
-        channel = new MethodChannel(messenger, "benefit_pay_flutter");
-        channel.setMethodCallHandler(this);
-        eventChannel = new EventChannel(messenger, "benefit_pay_event");
-        eventChannel.setStreamHandler(this);
+   private void setup(
+        final BinaryMessenger messenger,
+        final Application application,
+        final Activity activity,
+        final ActivityPluginBinding activityBinding) {
+    this.activity = activity;
+    this.application = application;
+    this.delegate = constructDelegate(activity);
+    channel = new MethodChannel(messenger, "benefit_pay_flutter");
+    channel.setMethodCallHandler(this);
+    eventChannel = new EventChannel(messenger, "benefit_pay_event");
+    eventChannel.setStreamHandler(this);
 
-        observer = new LifeCycleObserver(activity);
-        if (registrar != null) {
-            // V1 embedding setup for activity listeners.
-            application.registerActivityLifecycleCallbacks(observer);
-            registrar.addActivityResultListener(delegate);
-            registrar.addRequestPermissionsResultListener(delegate);
-        } else {
-            // V2 embedding setup for activity listeners.
-            activityBinding.addActivityResultListener(delegate);
-            activityBinding.addRequestPermissionsResultListener(delegate);
-//            lifecycle = FlutterLifecycleAdapter.getActivityLifecycle(activityBinding);
-//            lifecycle.addObserver(observer);
-        }
+    observer = new LifeCycleObserver(activity);
+    if (activityBinding != null) {
+        activityBinding.addActivityResultListener(delegate);
+        activityBinding.addRequestPermissionsResultListener(delegate);
     }
+}
 
 
     /**

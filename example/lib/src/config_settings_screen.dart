@@ -16,7 +16,7 @@ class _ConfigSettingsScreenState extends State<ConfigSettingsScreen> {
   /// Text Form Fields
   /// Variable Declaration
   TextEditingController publicKeyController = TextEditingController(
-    text: "pk_live_*****",
+    text: "pk_test_Wa4ju8UC1zoi0HhST9yO3M6n",
   );
 
   TextEditingController hashStringController = TextEditingController(text: "");
@@ -139,13 +139,9 @@ class _ConfigSettingsScreenState extends State<ConfigSettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String hashedString = generateTapHashString(
-        publicKeyController.text,
-        "sk_live***v1YjhV",
-        double.parse(transactionAmountController.text),
-        "BHD",
-        postUrl: postURLController.text,
-        transactionReference: "tx_01");
+    String hashedString = generateTapHashString(publicKeyController.text, "",
+        double.parse(transactionAmountController.text), "BHD",
+        postUrl: postURLController.text, transactionReference: "tx_01");
 
     return Scaffold(
       backgroundColor: CupertinoColors.extraLightBackgroundGray,
@@ -168,7 +164,7 @@ class _ConfigSettingsScreenState extends State<ConfigSettingsScreen> {
             const CustomDividerWidget(),
             CustomInputFieldWidget(
               fieldName: 'Hash String',
-              controller: TextEditingController(text: ""),
+              controller: TextEditingController(text: hashedString),
             ),
             gapH16,
             const LabelTextWidget(label: "Transaction"),
