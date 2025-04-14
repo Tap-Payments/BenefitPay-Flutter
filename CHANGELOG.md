@@ -1,3 +1,6 @@
+## 1.0.1 14-APR-2025
+
+* Support for Flutter 3.29.0
 
 ## 1.0.0 30-Dec-2024
 
