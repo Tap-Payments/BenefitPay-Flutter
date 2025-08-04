@@ -1,3 +1,7 @@
+## 1.0.3 04-AUG-2025
+
+* Add autoDismiss parameter to the transaction request
+
 ## 1.0.1 14-APR-2025
 
 * Support for Flutter 3.29.0
