@@ -1,4 +1,8 @@
-## 1.0.3 04-AUG-2025
+## 1.0.3 02-SEP-2025
+
+* Fix onClick callback (iOS)
+
+## 1.0.2 04-AUG-2025
 
 * Add autoDismiss parameter to the transaction request
 
