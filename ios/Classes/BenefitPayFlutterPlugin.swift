@@ -44,7 +44,7 @@ public class BenefitPayFlutterPlugin: NSObject, FlutterPlugin , PayButtonDelegat
         self.eventSink?(["onReady":"OnReady Callback Executed"])
     }
 
-    public func onClicked() {
+    public func onClick() {
         self.eventSink?(["onClick":"onClicked Callback Executed"])
     }
 

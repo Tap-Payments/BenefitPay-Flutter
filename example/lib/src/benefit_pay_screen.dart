@@ -44,38 +44,43 @@ class _BenefitPayScreenState extends State<BenefitPayScreen> {
           sdkConfiguration: widget.dictionaryMap,
           onReady: () {
             developer.log(">ON READY >>>>");
+            setState(() {
+              sdkResponse += ">ON READY >>>>\n";
+            });
           },
           onCancel: () {
             developer.log(">ON CANCEL >>>>");
             setState(() {
-              sdkResponse = "Cancelled";
+              sdkResponse += ">ON CANCEL >>>>\n";
             });
           },
           onSuccess: (String? value) {
             developer.log(">ON SUCCESS >>>> $value");
             setState(() {
-              sdkResponse = value ?? "";
+              sdkResponse += ">ON SUCCESS >>>> $value\n";
             });
           },
           onError: (String? error) {
             developer.log(">ON ERROR >>>> $error");
             setState(() {
-              sdkResponse = error ?? "";
+              sdkResponse += ">ON ERROR >>>> $error\n";
             });
           },
           onClick: () {
-
+            setState(() {
+              sdkResponse += ">ON CLICK >>>>\n";
+            });
           },
           onOrderCreated: (String? value) {
             developer.log(">ON ORDER CREATED >>>> $value");
             setState(() {
-              sdkResponse = value ?? "";
+              sdkResponse += ">ON ORDER CREATED >>>> $value\n";
             });
           },
           onChargeCreated: (String? value) {
             developer.log(">ON CHARGE CREATED >>>> $value");
             setState(() {
-              sdkResponse = value ?? "";
+              sdkResponse += ">ON CHARGE CREATED >>>> $value\n";
             });
           },
         ),

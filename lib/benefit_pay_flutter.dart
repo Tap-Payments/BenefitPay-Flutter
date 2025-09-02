@@ -123,8 +123,8 @@ class _TapBenefitPayWidgetState extends State<TapBenefitPayWidget> {
 
     if (result.containsKey("onClick")) {
       developer.log("On Click callback fired");
-      onReadyFunction = widget.onReady;
-      onReadyFunction!();
+      onClickFunction = widget.onClick;
+      onClickFunction!();
     }
 
     if (result.containsKey("onSuccess")) {
