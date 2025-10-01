@@ -1,6 +1,6 @@
 name: benefit_pay_flutter
 description: Benefit Pay Flutter, Powered by Tap Payments.
-version: 1.0.3
+version: 1.0.5
 homepage: https://github.com/Tap-Payments/BenefitPay-Flutter
 
 environment:

@@ -1,3 +1,11 @@
+## 1.0.5 01-OCT-2025
+
+* Support android 35
+
+## 1.0.4 24-SEP-2025
+
+* Support android 35
+
 ## 1.0.3 02-SEP-2025
 
 * Fix onClick callback (iOS)
