@@ -1,3 +1,10 @@
+## 1.0.6 01-OCT-2025
+Support android 35
+```proguard
+-dontwarn kotlinx.android.parcel.Parcelize
+-dontwarn kotlinx.serialization.Serializable
+```
+
 ## 1.0.5 01-OCT-2025
 
 * Support android 35

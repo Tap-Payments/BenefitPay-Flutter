@@ -1,0 +1,2 @@
+-dontwarn kotlinx.android.parcel.Parcelize
+-dontwarn kotlinx.serialization.Serializable
